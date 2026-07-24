@@ -1,0 +1,28 @@
+{
+  "name": "watches",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "json-server --watch db.json --port 8000"
+  },
+  "dependencies": {
+    "axios": "^1.18.1",
+    "pinia": "^4.0.2",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0",
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.8",
+    "sass": "^1.101.3",
+    "vite": "^8.1.5",
+    "vite-plugin-vue-devtools": "^8.1.5"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.12.0"
+  }
+}
