@@ -1,31 +1,48 @@
-# .
+# Watches
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplikacja sklepowa z zegarkami (SPA) zbudowana w Vue 3 — lista produktów, strona szczegółów produktu oraz koszyk.
 
-## Recommended IDE Setup
+## Stack technologiczny
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- [Vue 3](https://vuejs.org/) (Composition API)
+- [Vue Router](https://router.vuejs.org/)
+- [Pinia](https://pinia.vuejs.org/) — zarządzanie stanem (koszyk, zegarki)
+- [Axios](https://axios-http.com/) — komunikacja z API
+- [Sass](https://sass-lang.com/) — style
+- [Vite](https://vite.dev/) — build tool
+- [json-server](https://github.com/typicode/json-server) — mockowe REST API (dane z `db.json`)
 
-## Recommended Browser Setup
+## Struktura projektu
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+```
+src/
+├── assets/       # style, fonty, obrazy
+├── components/   # komponenty (Cart, Home, Nav, ProductPage, ...)
+├── composables/  # funkcje composable (np. usePlular.js)
+├── pages/        # widoki podpięte pod routing (Home, Watches, Product, Cart)
+├── router/       # konfiguracja Vue Router
+├── stores/       # store'y Pinia (cart, watches)
+├── App.vue
+└── main.js
+```
 
-## Customize configuration
+## Uruchomienie projektu
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+Instalacja zależności:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Aplikacja korzysta z mockowego API (`json-server`), które musi być uruchomione równolegle z serwerem deweloperskim.
+
+Uruchom mockowe API (w osobnym terminalu, port `8000`):
+
+```sh
+npm run server
+```
+
+Uruchom aplikację (Compile and Hot-Reload for Development):
 
 ```sh
 npm run dev
@@ -36,3 +53,22 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Preview builda produkcyjnego
+
+```sh
+npm run preview
+```
+
+## Routing
+
+| Ścieżka         | Widok            | Opis                       |
+| --------------- | ----------------- | --------------------------- |
+| `/`             | `HomePage.vue`     | Strona główna                |
+| `/watches`      | `WatchesPage.vue`  | Lista zegarków               |
+| `/product/:id`  | `ProductPage.vue`  | Szczegóły pojedynczego zegarka |
+| `/cart`         | `CartPage.vue`     | Koszyk                      |
+
+## Recommended IDE Setup
+
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (i wyłącz Vetur, jeśli jest zainstalowany).

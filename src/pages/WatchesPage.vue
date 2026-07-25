@@ -3,10 +3,12 @@ import Watch from "@/components/Watch.vue";
 import WatchesList from "@/components/WatchesList.vue";
 import { useWatchesStore } from "@/stores/watches";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
 
 const watchesStore = useWatchesStore();
-const { watches, countWatches } = storeToRefs(watchesStore);
+const { watches } = storeToRefs(watchesStore);
+
+const countWatches = computed(() => watches.value.length);
 
 onMounted(() => {
   watchesStore.fetchWatches();

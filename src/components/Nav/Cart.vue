@@ -23,6 +23,11 @@ a {
   font-family: "JetBrains";
   font-size: 14px;
   font-weight: 400;
+  transition: 0.2s;
+
+  &.active {
+    border-color: var(--gold);
+  }
 
   span {
     font-family: "JetBrains";

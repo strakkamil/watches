@@ -1,30 +1,24 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { useWatchesStore } from "@/stores/watches";
-import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
+import Buttons from "@/components/ProductPage/Buttons.vue";
+import WatchesLink from "@/components/WatchesLink.vue";
 
 const route = useRoute();
 const id = route.params.id;
 
 const watchesStore = useWatchesStore();
-const cartStore = useCartStore();
 const { watch } = storeToRefs(watchesStore);
-const { cart } = storeToRefs(cartStore);
-const { fetchWatch } = useWatchesStore();
-const { addToCart } = useCartStore();
-
-function isInCart(id) {
-  return cart.value.find((c) => c.id === Number(id));
-}
 
 onMounted(() => {
-  fetchWatch(id);
+  watchesStore.fetchWatch(id);
 });
 </script>
 
 <template>
+  <WatchesLink />
   <section class="watch card container">
     <div class="image-container">
       <img loading="lazy" :src="watch.imageUrl" :alt="watch.reference" />
@@ -51,13 +45,7 @@ onMounted(() => {
         <span class="title last">SZKŁO</span>
         <span class="value last">{{ watch.crystal }}</span>
       </div>
-      <button
-        :class="isInCart(id) ? 'cart' : 'add'"
-        v-if="watch.price"
-        @click="addToCart(watch)"
-      >
-        {{ isInCart(id) ? "Przejdź do koszka" : "Dodaj do koszyka" }}
-      </button>
+      <Buttons :id="Number(id)" />
     </div>
   </section>
 </template>
@@ -84,34 +72,6 @@ onMounted(() => {
   .info {
     display: flex;
     flex-direction: column;
-
-    button {
-      margin-top: 20px;
-      margin-left: auto;
-      padding: 10px 20px;
-      width: 40%;
-      background-color: var(--gold);
-      border: none;
-      border-radius: 3px;
-      font-family: "JetBrains";
-      font-size: 18px;
-      color: var(--bg);
-      cursor: pointer;
-      transition: 0.2s;
-
-      &.cart {
-        background-color: var(--hairline);
-        color: var(--text);
-
-        &:hover {
-          color: var(--bg);
-        }
-      }
-
-      &:hover {
-        background-color: var(--gold-bright);
-      }
-    }
 
     span.name {
       font-size: 24px;

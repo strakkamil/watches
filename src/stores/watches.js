@@ -1,18 +1,21 @@
 import axios from "axios";
 import { ref } from "vue";
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
+import { useCartStore } from "./cart";
 
 export const useWatchesStore = defineStore("watches", () => {
   const watches = ref([]);
   const watch = ref({});
-  const countWatches = ref(Number);
   const lastWatches = ref([]);
+  const cartWatches = ref([]);
+
+  const cartStore = useCartStore();
+  const { cart } = storeToRefs(cartStore);
 
   const fetchWatches = async () => {
     try {
       const response = await axios.get("http://localhost:8000/watches");
       watches.value = response.data;
-      countWatches.value = response.data.length;
     } catch (e) {
       console.error("Failed fetch watches", e);
     }
@@ -38,13 +41,30 @@ export const useWatchesStore = defineStore("watches", () => {
     }
   };
 
+  const fetchCartWatches = async () => {
+    if (cart.value.length) {
+      const query = cart.value.map((id) => `id=${id}`).join("&");
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/watches?${query}`,
+        );
+        cartWatches.value = response.data;
+      } catch (e) {
+        console.error("Failed fetch watches,", e);
+      }
+    } else {
+      cartWatches.value = [];
+    }
+  };
+
   return {
     watches,
     watch,
-    countWatches,
     lastWatches,
+    cartWatches,
     fetchWatches,
     fetchWatch,
     fetchLastWatches,
+    fetchCartWatches,
   };
 });
