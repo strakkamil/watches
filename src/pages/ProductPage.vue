@@ -10,7 +10,7 @@ const route = useRoute();
 const id = route.params.id;
 
 const watchesStore = useWatchesStore();
-const { watch } = storeToRefs(watchesStore);
+const { watchItem } = storeToRefs(watchesStore);
 
 onMounted(() => {
   watchesStore.fetchWatch(id);
@@ -21,29 +21,35 @@ onMounted(() => {
   <WatchesLink />
   <section class="watch card container">
     <div class="image-container">
-      <img loading="lazy" :src="watch.imageUrl" :alt="watch.reference" />
+      <img
+        loading="lazy"
+        :src="watchItem.imageUrl"
+        :alt="watchItem.reference"
+      />
     </div>
     <div class="info">
-      <span class="name">{{ watch.name }}</span>
-      <span class="desc">{{ watch.description }}</span>
-      <span class="price">{{ watch.price }} {{ watch.currency }}</span>
+      <span class="name">{{ watchItem.name }}</span>
+      <span class="desc">{{ watchItem.description }}</span>
+      <span class="price">{{ watchItem.price }} {{ watchItem.currency }}</span>
       <div class="watch-info">
         <span class="title">REF.</span>
-        <span class="value">{{ watch.reference }}</span>
+        <span class="value">{{ watchItem.reference }}</span>
         <span class="title">TYP</span>
-        <span class="value type">{{ watch.type }}</span>
+        <span class="value type">{{ watchItem.type }}</span>
         <span class="title">Mechanizm</span>
-        <span class="value">{{ watch.movement }}</span>
+        <span class="value">{{ watchItem.movement }}</span>
         <span class="title">Ø KOPERTY</span>
-        <span class="value">{{ watch.caseDiameterMm }} mm</span>
-        <span class="title" v-if="watch.powerReserveHours">REZERWA CHODU</span>
-        <span class="value" v-if="watch.powerReserveHours"
-          >{{ watch.powerReserveHours }} h</span
+        <span class="value">{{ watchItem.caseDiameterMm }} mm</span>
+        <span class="title" v-if="watchItem.powerReserveHours"
+          >REZERWA CHODU</span
+        >
+        <span class="value" v-if="watchItem.powerReserveHours"
+          >{{ watchItem.powerReserveHours }} h</span
         >
         <span class="title">WODOSZCZELNOŚĆ</span>
-        <span class="value">{{ watch.waterResistance }}</span>
+        <span class="value">{{ watchItem.waterResistance }}</span>
         <span class="title last">SZKŁO</span>
-        <span class="value last">{{ watch.crystal }}</span>
+        <span class="value last">{{ watchItem.crystal }}</span>
       </div>
       <Buttons :id="Number(id)" />
     </div>

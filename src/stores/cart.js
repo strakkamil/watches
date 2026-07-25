@@ -1,9 +1,17 @@
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore } from "pinia";
 import { useToast } from "vue-toastification";
 
 export const useCartStore = defineStore("cart", () => {
-  const cart = ref([]);
+  const cart = ref(JSON.parse(sessionStorage.getItem("cart")) || []);
+
+  watch(
+    cart,
+    (newValue) => {
+      sessionStorage.setItem("cart", JSON.stringify(newValue));
+    },
+    { deep: true },
+  );
 
   const toast = useToast();
 

@@ -1,6 +1,7 @@
 <script setup>
 import CartItem from "@/components/Cart/CartItem.vue";
 import Summary from "@/components/Cart/Summary.vue";
+import EmptyCart from "@/components/EmptyCart.vue";
 import WatchesLink from "@/components/WatchesLink.vue";
 import { usePlural } from "@/composables/usePlular";
 import { useWatchesStore } from "@/stores/watches";
@@ -37,10 +38,7 @@ onMounted(() => {
         :class="{ last: index === cartWatches.length - 1 }"
       />
     </div>
-    <div class="empty" v-if="cartWatches.length === 0">
-      <span>Brak zegarków w koszyku</span>
-      <RouterLink to="/watches">Przejdź do katalogu</RouterLink>
-    </div>
+    <EmptyCart v-if="cartWatches.length === 0" />
     <Summary v-if="cartWatches.length !== 0" />
   </section>
 </template>
@@ -64,29 +62,6 @@ onMounted(() => {
       font-size: 20px;
       font-family: "JetBrains";
       color: var(--text-dim);
-    }
-  }
-
-  .empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-
-    span {
-      font-family: "JetBrains";
-      font-size: 32px;
-    }
-
-    a {
-      padding: 15px 30px;
-      display: block;
-      background-color: var(--gold);
-      font-family: "JetBrains";
-      font-size: 18px;
-      text-decoration: none;
-      border-radius: 3px;
-      color: var(--bg);
     }
   }
 }

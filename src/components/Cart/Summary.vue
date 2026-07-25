@@ -1,21 +1,14 @@
 <script setup>
-import { useWatchesStore } from "@/stores/watches";
-import { storeToRefs } from "pinia";
-import { computed } from "vue";
-
-const watchesStore = useWatchesStore();
-const { cartWatches } = storeToRefs(watchesStore);
-
-const totalPrice = computed(() => {
-  return cartWatches.value.reduce((sum, watch) => sum + watch.price, 0);
-});
+import Price from "../Price.vue";
 </script>
 
 <template>
   <div class="summary-container">
     <div class="info">
       <span>Razem</span>
-      <span class="price">{{ totalPrice }} PLN</span>
+      <span class="price">
+        <Price />
+      </span>
     </div>
     <RouterLink to="/payment">Przejdź do podsumowania</RouterLink>
   </div>

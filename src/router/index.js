@@ -24,6 +24,11 @@ const router = createRouter({
       name: "product",
       component: () => import("../pages/ProductPage.vue"),
     },
+    {
+      path: "/payment",
+      name: "payment",
+      component: () => import("../pages/PaymentPage.vue"),
+    },
   ],
   linkActiveClass: "active",
 });

@@ -1,13 +1,23 @@
 import axios from "axios";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { defineStore, storeToRefs } from "pinia";
 import { useCartStore } from "./cart";
 
 export const useWatchesStore = defineStore("watches", () => {
   const watches = ref([]);
-  const watch = ref({});
+  const watchItem = ref({});
   const lastWatches = ref([]);
-  const cartWatches = ref([]);
+  const cartWatches = ref(
+    JSON.parse(sessionStorage.getItem("cartWatches")) || [],
+  );
+
+  watch(
+    cartWatches,
+    (newValue) => {
+      sessionStorage.setItem("cartWatches", JSON.stringify(newValue));
+    },
+    { deep: true },
+  );
 
   const cartStore = useCartStore();
   const { cart } = storeToRefs(cartStore);
@@ -24,7 +34,7 @@ export const useWatchesStore = defineStore("watches", () => {
   const fetchWatch = async (id) => {
     try {
       const response = await axios.get(`http://localhost:8000/watches/${id}`);
-      watch.value = response.data;
+      watchItem.value = response.data;
     } catch (e) {
       console.error("Failed fetch watch", e);
     }
@@ -59,7 +69,7 @@ export const useWatchesStore = defineStore("watches", () => {
 
   return {
     watches,
-    watch,
+    watchItem,
     lastWatches,
     cartWatches,
     fetchWatches,
