@@ -19,3 +19,11 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+
+.Vue-Toastification__toast--success {
+  background-color: var(--gold) !important;
+}
+
+.Vue-Toastification__toast--error {
+  background-color: var(--danger) !important;
+}

@@ -1,7 +1,6 @@
 <template>
   <li><RouterLink to="/watches">Katalog</RouterLink></li>
   <li><RouterLink to="/payment">Płatność</RouterLink></li>
-  <li><RouterLink to="/invoices">Faktury</RouterLink></li>
 </template>
 
 <style lang="scss" scoped>
