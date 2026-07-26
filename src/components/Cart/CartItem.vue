@@ -25,7 +25,7 @@ function deleteItem() {
       }}</RouterLink>
       <span class="ref">{{ props.watch.reference }}</span>
     </div>
-    <Button class="remove" type="BUTTON" @click="deleteItem">Usuń</Button>
+    <Button class="remove" @click="deleteItem">Usuń</Button>
     <span class="price"
       >{{ props.watch.price }} {{ props.watch.currency }}</span
     >

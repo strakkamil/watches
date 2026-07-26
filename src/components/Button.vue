@@ -3,11 +3,11 @@ defineProps({
   class: {
     type: String,
   },
-  element: {
+  type: {
     type: String,
     default: "BUTTON",
   },
-  event: {
+  to: {
     type: [Function, String],
     default: null,
   },
@@ -21,10 +21,10 @@ function handleClick() {
 </script>
 
 <template>
-  <RouterLink v-if="element === 'LINK'" :to="event" :class="class">
+  <RouterLink v-if="type === 'LINK'" :to="to" :class="class">
     <slot />
   </RouterLink>
-  <button v-if="element === 'BUTTON'" :class="class" @click="handleClick">
+  <button v-if="type === 'BUTTON'" :class="class" @click="handleClick">
     <slot />
   </button>
 </template>

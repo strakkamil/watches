@@ -15,7 +15,7 @@ import Clock from "../Clock.vue";
         >Mechaniczne zegarki wybrane dla charakteru, nie dla logo. Każdy
         egzemplarz z pełną kartą techniczną i numerem referencyjnym.</span
       >
-      <Button element="LINK" event="/watches">Przeglądaj kolekcję</Button>
+      <Button type="LINK" to="/watches">Przeglądaj kolekcję</Button>
     </div>
     <Clock size="300" />
   </section>

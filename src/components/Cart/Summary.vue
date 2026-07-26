@@ -11,7 +11,7 @@ import Price from "../Price.vue";
         <Price />
       </span>
     </div>
-    <Button element="LINK" event="/payment">Przejdź do podsumowania</Button>
+    <Button type="LINK" to="/payment">Przejdź do podsumowania</Button>
   </div>
 </template>
 

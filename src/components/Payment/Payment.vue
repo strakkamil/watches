@@ -15,7 +15,7 @@ import WatchesLink from "@/components/WatchesLink.vue";
       <span>Do zapłaty</span>
       <span><Price /></span>
     </div>
-    <Button element="BUTTON">Zapłać (Symulacja)</Button>
+    <Button>Zapłać (Symulacja)</Button>
     <div class="secure">
       <svg
         class="lock"

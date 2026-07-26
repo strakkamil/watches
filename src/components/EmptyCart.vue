@@ -5,7 +5,7 @@ import Button from "./Button.vue";
 <template>
   <div class="empty">
     <span>Brak zegarków w koszyku</span>
-    <Button element="LINK" event="/watches">Przeglądaj kolekcję</Button>
+    <Button type="LINK" to="/watches">Przeglądaj kolekcję</Button>
   </div>
 </template>
 
