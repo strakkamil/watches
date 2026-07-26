@@ -1,4 +1,5 @@
 <script setup>
+import Button from "../Button.vue";
 import { useCartStore } from "@/stores/cart";
 import { useWatchesStore } from "@/stores/watches";
 
@@ -24,7 +25,7 @@ function deleteItem() {
       }}</RouterLink>
       <span class="ref">{{ props.watch.reference }}</span>
     </div>
-    <button @click="deleteItem">Usuń</button>
+    <Button class="remove" type="BUTTON" @click="deleteItem">Usuń</Button>
     <span class="price"
       >{{ props.watch.price }} {{ props.watch.currency }}</span
     >

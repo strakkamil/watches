@@ -1,4 +1,5 @@
 <script setup>
+import Button from "@/components/Button.vue";
 import Price from "@/components/Price.vue";
 import WatchesLink from "@/components/WatchesLink.vue";
 </script>
@@ -14,7 +15,7 @@ import WatchesLink from "@/components/WatchesLink.vue";
       <span>Do zapłaty</span>
       <span><Price /></span>
     </div>
-    <button>Zapłać (symulacja)</button>
+    <Button element="BUTTON">Zapłać (Symulacja)</Button>
     <div class="secure">
       <svg
         class="lock"
@@ -64,21 +65,6 @@ import WatchesLink from "@/components/WatchesLink.vue";
     span {
       font-family: "JetBrains";
       font-size: 18px;
-    }
-  }
-
-  button {
-    padding: 15px;
-    font-family: "JetBrains";
-    font-size: 20px;
-    background-color: var(--gold);
-    color: var(--bg);
-    border: none;
-    transition: 0.2s;
-    cursor: pointer;
-
-    &:hover {
-      background-color: var(--gold-bright);
     }
   }
 

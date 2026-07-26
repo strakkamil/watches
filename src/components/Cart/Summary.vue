@@ -1,4 +1,5 @@
 <script setup>
+import Button from "../Button.vue";
 import Price from "../Price.vue";
 </script>
 
@@ -10,7 +11,7 @@ import Price from "../Price.vue";
         <Price />
       </span>
     </div>
-    <RouterLink to="/payment">Przejdź do podsumowania</RouterLink>
+    <Button element="LINK" event="/payment">Przejdź do podsumowania</Button>
   </div>
 </template>
 
@@ -32,24 +33,6 @@ import Price from "../Price.vue";
     span {
       font-family: "JetBrains";
       font-size: 24px;
-    }
-  }
-
-  a {
-    width: 100%;
-    padding: 15px;
-    display: block;
-    font-family: "JetBrains";
-    font-size: 16px;
-    text-decoration: none;
-    background-color: var(--gold);
-    text-align: center;
-    color: var(--bg);
-    border-radius: 3px;
-    transition: 0.2s;
-
-    &:hover {
-      background-color: var(--gold-bright);
     }
   }
 }

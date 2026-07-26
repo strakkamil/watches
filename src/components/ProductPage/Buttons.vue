@@ -1,4 +1,5 @@
 <script setup>
+import Button from "../Button.vue";
 import { useRouter } from "vue-router";
 import { useCartStore } from "@/stores/cart";
 import { storeToRefs } from "pinia";
@@ -23,66 +24,29 @@ function goToCart() {
 
 <template>
   <div class="buttons-container">
-    <button
-      class="add"
+    <Button
       v-if="!isInCart()"
+      class="add"
       @click="cartStore.addToCart(props.id)"
+      >Dodaj do koszyka</Button
     >
-      Dodaj do koszyka
-    </button>
-    <button
-      class="remove"
+    <Button
       v-if="isInCart()"
+      class="remove"
       @click="cartStore.removeFromCart(props.id)"
+      >Usuń z koszyka</Button
     >
-      Usuń z koszyka
-    </button>
-    <button class="cart" v-if="isInCart()" @click="goToCart">
-      Przejdź do koszyka
-    </button>
+    <Button v-if="isInCart()" class="cart" @click="goToCart"
+      >Przejdź do koszyka</Button
+    >
   </div>
 </template>
 
 <style lang="scss" scoped>
 .buttons-container {
+  margin-top: 25px;
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
-
-  button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    width: 40%;
-    background-color: var(--gold);
-    border: none;
-    border-radius: 3px;
-    font-family: "JetBrains";
-    font-size: 18px;
-    color: var(--bg);
-    cursor: pointer;
-    transition: 0.2s;
-
-    &.remove {
-      background-color: var(--danger);
-
-      &:hover {
-        background-color: var(--danger-bright);
-      }
-    }
-
-    &.cart {
-      background-color: var(--hairline);
-      color: var(--text);
-      margin-left: unset;
-
-      &:hover {
-        color: var(--bg);
-      }
-    }
-
-    &:hover {
-      background-color: var(--gold-bright);
-    }
-  }
 }
 </style>

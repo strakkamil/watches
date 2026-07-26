@@ -1,4 +1,5 @@
 <script setup>
+import Button from "../Button.vue";
 import Clock from "../Clock.vue";
 </script>
 
@@ -14,7 +15,7 @@ import Clock from "../Clock.vue";
         >Mechaniczne zegarki wybrane dla charakteru, nie dla logo. Każdy
         egzemplarz z pełną kartą techniczną i numerem referencyjnym.</span
       >
-      <RouterLink to="/watches">Przeglądaj kolekcję</RouterLink>
+      <Button element="LINK" event="/watches">Przeglądaj kolekcję</Button>
     </div>
     <Clock size="300" />
   </section>
@@ -52,28 +53,11 @@ section {
 
     &.desc {
       display: inline-block;
+      margin-bottom: 25px;
       max-width: 440px;
       font-size: 16px;
       font-family: "Fraunces";
       color: var(--text-dim);
-    }
-  }
-
-  a {
-    display: block;
-    margin-top: 25px;
-    background-color: var(--gold);
-    width: fit-content;
-    padding: 20px 35px;
-    border-radius: 3px;
-    color: var(--bg);
-    font-size: 15px;
-    font-family: "JetBrains";
-    text-decoration: none;
-    transition: 0.2s;
-
-    &:hover {
-      background-color: var(--gold-bright);
     }
   }
 }

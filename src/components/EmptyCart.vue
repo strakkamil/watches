@@ -1,7 +1,11 @@
+<script setup>
+import Button from "./Button.vue";
+</script>
+
 <template>
   <div class="empty">
     <span>Brak zegarków w koszyku</span>
-    <RouterLink to="/watches">Przejdź do katalogu</RouterLink>
+    <Button element="LINK" event="/watches">Przeglądaj kolekcję</Button>
   </div>
 </template>
 
@@ -15,17 +19,6 @@
   span {
     font-family: "JetBrains";
     font-size: 32px;
-  }
-
-  a {
-    padding: 15px 30px;
-    display: block;
-    background-color: var(--gold);
-    font-family: "JetBrains";
-    font-size: 18px;
-    text-decoration: none;
-    border-radius: 3px;
-    color: var(--bg);
   }
 }
 </style>
