@@ -10,7 +10,8 @@ Aplikacja sklepowa z zegarkami (SPA) zbudowana w Vue 3 — lista produktów, str
 - [Axios](https://axios-http.com/) — komunikacja z API
 - [Sass](https://sass-lang.com/) — style
 - [Vite](https://vite.dev/) — build tool
-- [json-server](https://github.com/typicode/json-server) — mockowe REST API (dane z `db.json`)
+
+Dane o zegarkach są statycznym plikiem [`public/watches.json`](public/watches.json), pobieranym przez Axios — nie ma osobnego backendu.
 
 ## Struktura projektu
 
@@ -32,14 +33,6 @@ Instalacja zależności:
 
 ```sh
 npm install
-```
-
-Aplikacja korzysta z mockowego API (`json-server`), które musi być uruchomione równolegle z serwerem deweloperskim.
-
-Uruchom mockowe API (w osobnym terminalu, port `8000`):
-
-```sh
-npm run server
 ```
 
 Uruchom aplikację (Compile and Hot-Reload for Development):
@@ -68,6 +61,15 @@ npm run preview
 | `/watches`      | `WatchesPage.vue`  | Lista zegarków               |
 | `/product/:id`  | `ProductPage.vue`  | Szczegóły pojedynczego zegarka |
 | `/cart`         | `CartPage.vue`     | Koszyk                      |
+| `/payment`      | `PaymentPage.vue`  | Symulacja płatności          |
+
+## Wdrożenie (GitHub Pages)
+
+Repo zawiera workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), który przy każdym push builduje projekt i publikuje `dist/` na GitHub Pages.
+
+Wymagane jednorazowe ustawienie: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+
+`base` w [`vite.config.js`](vite.config.js) jest ustawiony na `/watches/` — jeśli repo zmieni nazwę, trzeba to zaktualizować.
 
 ## Recommended IDE Setup
 
