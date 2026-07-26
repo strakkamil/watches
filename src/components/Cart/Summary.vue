@@ -22,8 +22,22 @@ import Price from "../Price.vue";
   align-items: end;
   margin-top: 25px;
   margin-left: auto;
-  width: 25%;
+  width: 30%;
   gap: 15px;
+
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    align-items: stretch;
+
+    :deep(a) {
+      width: 100%;
+      text-align: center;
+    }
+  }
 
   .info {
     width: 100%;

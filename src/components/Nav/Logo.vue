@@ -15,5 +15,10 @@ span {
     margin-left: 5px;
     color: var(--gold);
   }
+
+  @media (max-width: 640px) {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+  }
 }
 </style>

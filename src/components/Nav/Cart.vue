@@ -35,5 +35,10 @@ a {
       color: var(--gold);
     }
   }
+
+  @media (max-width: 640px) {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
 }
 </style>

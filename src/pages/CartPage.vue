@@ -64,5 +64,21 @@ onMounted(() => {
       color: var(--text-dim);
     }
   }
+
+  @media (max-width: 640px) {
+    margin-top: 40px;
+
+    .heading {
+      margin-bottom: 20px;
+
+      h1 {
+        font-size: 22px;
+      }
+
+      h2 {
+        font-size: 14px;
+      }
+    }
+  }
 }
 </style>

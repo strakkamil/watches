@@ -39,11 +39,18 @@ import WatchesLink from "@/components/WatchesLink.vue";
   margin-top: 50px;
   margin-bottom: 50px;
   padding: 50px;
-  width: 600px;
+  width: 100%;
+  max-width: 600px;
   background-color: var(--bg-card);
   border: 1px solid var(--hairline);
   border-radius: 3px;
   gap: 10px;
+
+  @media (max-width: 640px) {
+    padding: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 
   h1 {
     font-size: 26px;

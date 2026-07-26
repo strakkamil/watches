@@ -49,5 +49,17 @@ onMounted(() => {
     grid-area: h3;
     text-align: right;
   }
+
+  @media (max-width: 640px) {
+    margin-top: 30px;
+
+    h1 {
+      font-size: 22px;
+    }
+
+    h2 {
+      font-size: 14px;
+    }
+  }
 }
 </style>

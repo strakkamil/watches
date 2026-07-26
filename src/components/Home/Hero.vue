@@ -60,5 +60,34 @@ section {
       color: var(--text-dim);
     }
   }
+
+  @media (max-width: 1024px) {
+    gap: 40px;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 50px;
+
+    h1 {
+      font-size: 34px;
+
+      span {
+        font-size: 34px;
+      }
+    }
+
+    span.desc {
+      max-width: 100%;
+    }
+
+    .hero-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }
 </style>

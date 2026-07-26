@@ -24,7 +24,7 @@ function getValues(time) {
 
 function size(size) {
   return {
-    "--size": `${size}px`,
+    "--size": `min(${size}px, 60vw)`,
   };
 }
 

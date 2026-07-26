@@ -31,7 +31,9 @@ header {
   nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
+    gap: 10px;
 
     ul {
       display: flex;
@@ -43,6 +45,10 @@ header {
       align-items: center;
       text-decoration: none;
     }
+  }
+
+  @media (max-width: 640px) {
+    height: 60px;
   }
 }
 </style>

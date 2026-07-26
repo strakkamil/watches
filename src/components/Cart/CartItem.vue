@@ -94,5 +94,35 @@ function deleteItem() {
     color: var(--gold);
     text-align: right;
   }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+      "image name"
+      "price price"
+      "button button";
+    gap: 15px;
+    padding: 20px 0;
+
+    img {
+      grid-area: image;
+      max-height: 80px;
+      width: 80px;
+    }
+
+    .name {
+      grid-area: name;
+    }
+
+    .price {
+      grid-area: price;
+      text-align: left;
+    }
+
+    button {
+      grid-area: button;
+      width: 100%;
+    }
+  }
 }
 </style>

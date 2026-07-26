@@ -48,5 +48,10 @@ function goToCart() {
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
+
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
 }
 </style>

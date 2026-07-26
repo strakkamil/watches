@@ -64,13 +64,26 @@ onMounted(() => {
   grid-template-columns: 35% 1fr;
   gap: 80px;
 
+  @media (max-width: 1024px) {
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
   .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: radial-gradient(circle at 50% 40%, #1a1a1d, #0a0a0b);
     border: 1px solid var(--hairline);
 
     img {
-      width: 100%;
-      height: auto;
+      width: 80%;
+      height: 80%;
       object-fit: cover;
     }
   }
@@ -120,6 +133,7 @@ onMounted(() => {
 
         &.value {
           justify-content: end;
+          text-align: right;
 
           &.last {
             border-bottom: 1px solid var(--hairline);

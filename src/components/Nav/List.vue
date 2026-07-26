@@ -26,6 +26,12 @@ li {
       color: var(--gold-bright);
       border-bottom: 2px solid var(--gold);
     }
+
+    @media (max-width: 640px) {
+      padding: 10px;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
   }
 }
 </style>
