@@ -27,10 +27,14 @@ export const useWatchesStore = defineStore("watches", () => {
   const cartStore = useCartStore();
   const { cart } = storeToRefs(cartStore);
 
+  const fetchAllWatches = async () => {
+    const response = await axios.get(`${import.meta.env.BASE_URL}watches.json`);
+    return response.data;
+  };
+
   const fetchWatches = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/watches");
-      watches.value = response.data;
+      watches.value = await fetchAllWatches();
     } catch (e) {
       console.error("Failed fetch watches", e);
     }
@@ -38,8 +42,8 @@ export const useWatchesStore = defineStore("watches", () => {
 
   const fetchWatch = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:8000/watches/${id}`);
-      watchItem.value = response.data;
+      const all = await fetchAllWatches();
+      watchItem.value = all.find((watch) => watch.id === Number(id)) || {};
     } catch (e) {
       console.error("Failed fetch watch", e);
     }
@@ -47,10 +51,8 @@ export const useWatchesStore = defineStore("watches", () => {
 
   const fetchLastWatches = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/watches", {
-        params: { _sort: "id", _order: "desc", _limit: 6, _page: 1 },
-      });
-      lastWatches.value = response.data;
+      const all = await fetchAllWatches();
+      lastWatches.value = [...all].sort((a, b) => b.id - a.id).slice(0, 6);
     } catch (e) {
       console.error("Failed fetch watches,", e);
     }
@@ -58,12 +60,9 @@ export const useWatchesStore = defineStore("watches", () => {
 
   const fetchCartWatches = async () => {
     if (cart.value.length) {
-      const query = cart.value.map((id) => `id=${id}`).join("&");
       try {
-        const response = await axios.get(
-          `http://localhost:8000/watches?${query}`,
-        );
-        cartWatches.value = response.data;
+        const all = await fetchAllWatches();
+        cartWatches.value = all.filter((watch) => cart.value.includes(watch.id));
       } catch (e) {
         console.error("Failed fetch watches,", e);
       }
