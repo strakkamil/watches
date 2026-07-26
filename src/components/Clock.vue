@@ -1,4 +1,11 @@
 <script setup>
+import { useWatchesStore } from "@/stores/watches";
+import { storeToRefs } from "pinia";
+import { computed } from "vue";
+
+const watchesStore = useWatchesStore();
+const { caliber } = storeToRefs(watchesStore);
+
 const now = new Date();
 const second = now.getSeconds() * 6;
 const minute = now.getMinutes() * 6;
@@ -11,6 +18,7 @@ function getValues(time) {
   return {
     "--from": `${time}deg`,
     "--to": `${time + 360}deg`,
+    "--caliber": caliber.value === "MECHANICAL" ? 360 : 60,
   };
 }
 
@@ -20,36 +28,88 @@ function size(size) {
   };
 }
 
-const secondStyle = getValues(second);
-const minuteStyle = getValues(minute);
+const secondStyle = computed(() => getValues(second));
+const minuteStyle = computed(() => getValues(minute));
 const sizeStyle = size(+props.size);
+
+function changeCaliber(type) {
+  watchesStore.changeCaliber(type);
+}
 </script>
 
 <template>
-  <div class="clock" :style="sizeStyle">
-    <div class="watch-face">
-      <span class="index zero big"></span>
-      <span class="index five"></span>
-      <span class="index ten"></span>
-      <span class="index fifteen big"></span>
-      <span class="index twenty"></span>
-      <span class="index twenty-five"></span>
-      <span class="index thirty big"></span>
-      <span class="index thirty-five"></span>
-      <span class="index forty"></span>
-      <span class="index forty-five big"></span>
-      <span class="index fifty"></span>
-      <span class="index fifty-five"></span>
-      <span class="hand second" :style="secondStyle"></span>
-      <span class="hand minute" :style="minuteStyle"></span>
-      <span class="center"></span>
+  <div class="clock-animation">
+    <div class="type-buttons">
+      <button
+        @click="changeCaliber('MECHANICAL')"
+        :class="{ active: caliber === 'MECHANICAL' }"
+      >
+        Mechaniczny
+      </button>
+      <button
+        @click="changeCaliber('QUARTZ')"
+        :class="{ active: caliber === 'QUARTZ' }"
+      >
+        Kwarcowy
+      </button>
+    </div>
+    <div class="clock" :style="sizeStyle">
+      <div class="watch-face">
+        <span class="index zero big"></span>
+        <span class="index five"></span>
+        <span class="index ten"></span>
+        <span class="index fifteen big"></span>
+        <span class="index twenty"></span>
+        <span class="index twenty-five"></span>
+        <span class="index thirty big"></span>
+        <span class="index thirty-five"></span>
+        <span class="index forty"></span>
+        <span class="index forty-five big"></span>
+        <span class="index fifty"></span>
+        <span class="index fifty-five"></span>
+        <span class="hand second" :style="secondStyle"></span>
+        <span class="hand minute" :style="minuteStyle"></span>
+        <span class="center"></span>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.type-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  border: 1px solid var(--hairline);
+  border-radius: 3px;
+  button {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-family: "JetBrains";
+    font-size: 12px;
+    background-color: transparent;
+    border: none;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+
+    &:hover {
+      color: var(--gold);
+    }
+
+    &.active {
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+    }
+  }
+}
+
 .clock {
-  --origin: calc(var(--size) * 0.9 / 2 - 2px); // dwa razy odjęte border
+  --origin: calc(var(--size) * 0.9 / 2 - 2px); // dwa razy odjęty border
   position: relative;
   width: var(--size);
   height: var(--size);
@@ -90,7 +150,7 @@ const sizeStyle = size(+props.size);
       transform-origin: 100% 100%;
       rotate: 0deg;
       z-index: 2;
-      animation: tick 60s steps(360, end) infinite;
+      animation: tick 60s steps(var(--caliber), end) infinite;
       transform: translateX(50%);
 
       &.minute {

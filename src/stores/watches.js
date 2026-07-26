@@ -10,6 +10,7 @@ export const useWatchesStore = defineStore("watches", () => {
   const cartWatches = ref(
     JSON.parse(sessionStorage.getItem("cartWatches")) || [],
   );
+  const caliber = ref(sessionStorage.getItem("caliber") || "MECHANICAL");
 
   watch(
     cartWatches,
@@ -18,6 +19,10 @@ export const useWatchesStore = defineStore("watches", () => {
     },
     { deep: true },
   );
+
+  watch(caliber, (newValue) => {
+    sessionStorage.setItem("caliber", newValue);
+  });
 
   const cartStore = useCartStore();
   const { cart } = storeToRefs(cartStore);
@@ -67,11 +72,17 @@ export const useWatchesStore = defineStore("watches", () => {
     }
   };
 
+  const changeCaliber = (type) => {
+    caliber.value = type;
+  };
+
   return {
+    caliber,
     watches,
     watchItem,
     lastWatches,
     cartWatches,
+    changeCaliber,
     fetchWatches,
     fetchWatch,
     fetchLastWatches,
